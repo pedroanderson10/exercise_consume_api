@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:backgroundTint="#34613E"
+    android:elevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="#CBEFD1"
+        android:layout_margin="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textuserid"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:text="User ID : "
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/userid"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="10dp"
+            android:text="UserId"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/textid"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="10dp"
+            android:text="ID : "
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/id"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="10dp"
+            android:text="ID"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/texttittle"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="40dp"
+            android:text="Tittle : "
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/tittle"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="40dp"
+            android:text="Tittle"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/textbody"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="90dp"
+            android:text="Body : "
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/body"
+            android:layout_width="340dp"
+            android:layout_height="85dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="90dp"
+            android:text="Body"
+            android:textSize="18dp" />
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>
