@@ -1,5 +1,6 @@
 package com.example.greenmileteste;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,30 +30,36 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
 
-    private EditText editText;
-
     private List<Post> postList;
-
     private ProgressDialog progress;
+
+    private EditText editTextID, editTextUserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buildRecyclerView();
-        editText = findViewById(R.id.editTextId);
-        filtrarDados();
-        buscarDados();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("GreenMileTeste - Coleção de Posts");
 
+        buildRecyclerView();
+        buscarDadosAPI();
+
+        editTextID = findViewById(R.id.editTextId);
+        editTextID.addTextChangedListener(textWatcher);
+
+        editTextUserID = findViewById(R.id.editTextUserID);
+        editTextUserID.setKeyListener(null);
+        //editTextUserID.addTextChangedListener(textWatcher);
+        //filtrarDadosUserID();
 
     }
 
-    private  void buscarDados(){
+    private  void buscarDadosAPI(){
         progress = new ProgressDialog(MainActivity.this);
-        progress.setTitle("buscando...");
+        progress.setTitle("Buscando dados da API...");
         progress.show();
-
 
 
         JSONPlaceholder jsonPlaceholder = ConsumeAPI.consumeAPI(JSONPlaceholder.class);
@@ -69,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 postList = response.body();
-                //Log.d("teste", postList.get(0).getResource());
+                //Log.d("teste", postList.get(0).getID);
                 postAdapter = new PostAdapter(MainActivity.this, postList);
                 recyclerView.setAdapter(postAdapter);
 
@@ -85,28 +92,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Teste Filtro por ID
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-    private void filtrarDados(){
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
 
-            }
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        }
 
-            }
+        @Override
+        public void afterTextChanged(Editable editable) {
+            filter(editable.toString());
+        }
+    };
 
-            @Override
-            public void afterTextChanged(Editable editable) {
-                filterRecycler(editable.toString());
-            }
-        });
-    }
-
-
-    private void filterRecycler(String text){
+    private void filter(String text){
         ArrayList<Post> listAux = new ArrayList<>();
 
         for(Post post : postList){
@@ -125,8 +129,44 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    public void buscarPost(View v){
-        Toast.makeText(this, "Buscando post...", Toast.LENGTH_SHORT).show();
+
+
+    //////////// Teste Filtro por User ID
+
+    /*private void filtrarDadosUserID(){
+        editTextUserID.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filterUserID(editable.toString());
+            }
+        });
+
     }
+
+    private void filterUserID(String text){
+        ArrayList<Post> listAux = new ArrayList<>();
+
+        for(Post post : postList){
+            if(post.getUserId().toLowerCase().contains(text.toLowerCase())){
+                listAux.add(post);
+            }
+        }
+
+        postAdapter.filterListAux(listAux);
+
+    }*/
+
+
+
 
 }
